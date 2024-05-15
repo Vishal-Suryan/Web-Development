@@ -81,7 +81,52 @@
             color:rgb(10,102,194);
             border-color: rgb(10,102,194);
         }
+
+        .stretch{
+            margin-top: 20px;
+            color: white;
+            background-color:  green;
+            font-weight: bold;
+            border:none;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-left: 12px;
+            padding-right: 12px;
+            transition: 0.5s;
+            border-radius: 16px;
+        }
+
+        .stretch:hover{
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 25px;
+            padding-right: 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            
+        }
+
+        .Shadow{
+            margin-top: 20px;
+            color: white;
+            background-color:  green;
+            font-weight: bold;
+            border:none;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-left: 12px;
+            padding-right: 12px;
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        }
+        .Shadow:active {
+            margin-top: 3px;
+            margin-left: 3px;
+            box-shadow: none;
+          }
+
+        
     </style>
+
     
     <button class="Request-now">
         Request now
@@ -108,5 +153,14 @@
     <button class="Save">
         Save
     </button>
+    <br>
+    <button class="stretch">
+        Stretch
+    </button>
+    <br>
+    <button class="Shadow">
+        Shadow
+    </button>
+    <br>
 </body>
 </html>
