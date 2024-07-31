@@ -1,0 +1,165 @@
+.loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5 rem;
+    margin-bottom: 2rem;
+}
+.loader1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5 rem;
+    margin-bottom: 2rem;
+}
+.loader2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5 rem;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+.loader2 div{
+    background-color: red;
+    height: 100px;
+    width: 30px;
+}
+.loader3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5 rem;
+    margin-bottom: 2rem;
+}
+.loader > div{
+    height: 4rem;
+    width:4rem;
+    border-radius: 50%;
+    border: 5px solid red;
+    border-top: 5px solid #f0eeeb;
+    animation: spinner 3s linear infinite;
+}
+.loader1 > div{
+    height: 4rem;
+    width:4rem;
+    border-radius: 50%;
+    border: 5px solid red;
+    border-top: 5px solid #f0eeeb;
+    border-bottom: 5px solid #f0eeeb;
+    animation: spinner 3s linear infinite;
+}
+.loader2 .first{
+    animation: expander 0.8s linear infinite;
+    animation-delay: 0.4s;
+}
+.loader2 .second{
+    animation: expander 0.8s linear infinite;
+    animation-delay: 0.6s;
+    
+}
+.loader2 .third{
+    animation: expander 0.8s linear infinite;
+    animation-delay: 0;
+
+}
+.loader3 > div{
+    width: 4rem;
+    height: 4rem;
+    border: 5px solid grey;
+    border-radius: 50%;
+    animation: drop 2s linear infinite;
+
+}
+@keyframes spinner{
+    form{
+        transform:rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+@keyframes spinner1{
+    form{
+        transform:rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+@keyframes expander {
+    0%{
+        height: 100px;
+    }
+    50%{
+        height: 150px;
+    }
+    100%{
+        height:100px;
+    }
+}
+@keyframes drop{
+    0%{
+        width: 2rem;
+        height: 2rem;
+        border-color: grey;
+        opacity: 0;
+    }
+    4.5%{
+        width: 2rem;
+        height: 2rem;
+        border-color: grey;
+        opacity: 0;
+    }
+    5%{
+        width: 2rem;
+        height: 2rem;
+        border-color: grey;
+        opacity: 1;
+    }
+    35%{
+        opacity: 0;
+    }
+    50%{
+        width: 3rem;
+        height: 3rem;
+        border-color: #f7f6f5;
+        opacity: 1;
+    }
+    53%{
+        width: 3rem;
+        height: 3rem;
+        border-color: #f7f6f5;
+        opacity: 1;
+    }
+    54%{
+        width: 3rem;
+        height: 3rem;
+        border-color: #f7f6f5;
+        opacity: 0;
+    }
+    75%{
+        width: 3.8rem;
+        height: 3.8rem;
+        border-color: #fcfbfa;
+        opacity: 1;
+    }
+    79%{
+        width: 3.8rem;
+        height: 3.8rem;
+        border-color: #fcfbfa;
+        opacity: 1;
+    }
+    80%{
+        width: 3.8rem;
+        height: 3.8rem;
+        border-color: #fcfbfa;
+        opacity: 0;
+    }
+    100%{
+        width: 4rem;
+        height: 4rem;
+        border-color: #faf5f5;
+        opacity: 1;
+    }
+}
