@@ -1,0 +1,72 @@
+html{
+    box-sizing: border-box;
+}
+
+*,*::after,*::before{
+    box-sizing: inherit;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.first-image{
+    background-image: url(images/1.jpg);
+    min-height: 480px;
+    opacity: 0.8;
+}
+.second-image{
+    background-image: url(images/2.jpg);
+    min-height: 480px;
+}
+.third-image{
+    background-image: url(images/3.jpg);
+    min-height: 480px;
+}
+.fourth-image{
+    background-image: url(images/4.jpg);
+    min-height: 480px;
+    opacity: 0.8;
+}
+.first-image,.second-image,.third-image,.fourth-image{
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+section{
+    text-align: center;
+    padding: 3rem 5rem;
+}
+.section-light{
+    background-color: aliceblue;
+    color: #3a3a3a;
+}
+.section-dark {
+    background-color: rgb(131, 140, 148);
+    color: #f6eeee;
+}
+
+#section-light-3{
+    background: linear-gradient(to bottom, rgb(217, 191, 103), rgb(179, 214, 245));
+    color: #393131;
+}
+.image{
+    position: relative;
+}
+.image div{
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+ }
+
+ .first-image div span{
+    background-color: #3a3a3a;
+    padding: 10px;
+    color: #f1f1ec;
+ }

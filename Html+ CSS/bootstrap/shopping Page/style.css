@@ -10,7 +10,10 @@
 height: 3rem;
 background-color: white;
 }
-
+.carousel > .carousel-inner > .carousel-item > img{
+    width:240px; 
+    height:300px;
+}
 .product-image{
     max-height: 160px;
     max-width: 150px;
