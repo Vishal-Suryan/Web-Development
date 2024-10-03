@@ -136,7 +136,7 @@ function appendTodoHtml(todo){
     todoItem.appendChild(wrapper);
 
     todoList.appendChild(todoItem);
-}
+}  
 
 document.addEventListener("DOMContentLoaded",()=>{
     const todoInput=document.getElementById("todoInput");
