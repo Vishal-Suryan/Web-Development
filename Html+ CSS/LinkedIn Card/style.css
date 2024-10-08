@@ -1,0 +1,172 @@
+html{
+    box-sizing: border-box;
+}
+
+*,*::after,*::before{
+    box-sizing: inherit;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(244, 244, 240);
+    height: 100vh;
+}
+
+#container{
+    height: 685px;
+    width : 620px;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(222, 217, 217);
+    border-radius: 15px;
+    box-shadow: 0.5px;
+    padding:0px;
+}
+
+#globe-svg{
+    height:15px;
+    width:15px;
+    border-radius: 7.5px;
+}
+
+nav .profile{
+    margin: 10px 10px;
+    display: flex;
+    align-items: flex-start;
+    font-family: Arial, sans-serif;
+}
+
+nav .profile-img{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+nav .profile-details {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+}
+
+nav  .name-section{
+    display: flex;
+    align-items: center;
+}
+
+.name{
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.pronouns{
+    font-size: 15px;
+    color: gray;
+    margin-right:5px;
+}
+
+.status {
+    font-size: 15px;
+    color: gray;
+}
+
+.role {
+    font-size: 15px;
+    color: gray;
+    margin-top: 2px;
+}
+
+nav .meta-info{
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    color: gray;
+    margin-top: 2px;
+}
+
+.meta-info .time {
+    margin-right: 5px;
+}
+
+.meta-info .location {
+    margin-left: 5px;
+}
+
+.body-images{
+    display: flex;
+}
+
+#image-1{
+    margin-right: 5px;
+    height:450px;
+    width: 395px;
+}
+
+#image-2{
+    height:222px;
+    width: 218px;
+}
+
+#image-3{
+    height:224px;
+    width: 218px;
+}
+
+.line{
+    margin: 10px 10px;
+    height: 1px;
+    background-color: rgb(226, 218, 218);
+    border-radius: 50%;
+}
+
+.body p{
+    margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#like-info,#comment-info{
+    color: gray;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1rem;
+    
+}
+
+#like-info{
+    margin-left: 10px;
+}
+
+.post-action{
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 142px;
+    height: 50px;   
+}
+
+.button:hover{
+    background-color: rgb(224, 218, 218);
+    border-radius: 50%;
+    transition: 0.3s;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.post-info{
+    display:flex;
+    justify-content: space-between;
+}
+
+#comment-info{
+    text-align: right;
+    height: fit-content;
+    margin-right:10px;
+}
