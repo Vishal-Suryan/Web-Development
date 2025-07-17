@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #e0aaff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin-top: 0.5rem;
+  color: #240046;
+  font-size: 4rem;
+  letter-spacing: 0.15rem;
+  word-spacing: -0.25rem;
+  text-align: center;
+}
+
+.title img {
+  margin-top: 3rem;
+  height: 40px;
+  width: 42px;
+}
+
+span {
+  color: #3d07abc2;
+}
+
+.board {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.05rem;
+  width: 30rem;
+  max-width: 90vw;
+  aspect-ratio: 1 / 1;
+}
+
+.board > div {
+  background-color: #10002b;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.board > div:focus {
+  outline: 2px solid #fff;
+}
+
+.btn {
+  margin-top: 2rem;
+}
+
+.reset-btn,
+.pvp,
+.avp {
+  margin-left: 0.5rem;
+  background-color: #7b2cbf;
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 1.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.reset-btn:hover {
+  background-color: #5a189a;
+}
+
+.avp:hover {
+  background-color: #5a189a;
+}
+
+.pvp:hover {
+  background-color: #5a189a;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(0.5);
+}
+
+.board > div img {
+  object-fit: contain;
+  display: block;
+  width: 80%;
+  height: 80%;
+  pointer-events: none;
+}
+
+.ai-move {
+  animation: aiFlash 0.5s ease;
+}
+
+@keyframes aiFlash {
+  0% {
+    background-color: #fff1;
+  }
+  50% {
+    background-color: #3d07ab;
+  }
+  100% {
+    background-color: #10002b;
+  }
+}
+
+.winning-box {
+  background-color: #38b000 !important;
+  box-shadow: 0 0 10px #38b000;
+  animation: pulse 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
