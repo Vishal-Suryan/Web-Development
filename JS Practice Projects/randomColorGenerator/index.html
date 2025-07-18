@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="random-color-generator-container">
+      <div class="hex-color-generator">
+        <p class="hex-color-value">#ffffff</p>
+        <button class="hex-button">Create Hex Color</button>
+        <button class="hex-copy">Copy Hex Color</button>
+      </div>
+      <div class="rgb-color-generator">
+        <p class="rgbColorValue">rgb(255,255,255)</p>
+        <div>
+          <label for="red">Red</label>
+          <input type="range" min="0" max="255" value="0" id="red" />
+        </div>
+        <div>
+          <label for="green">Green</label>
+          <input type="range" min="0" max="255" value="0" id="green" />
+        </div>
+        <div>
+          <label for="blue">Blue</label>
+          <input type="range" min="0" max="255" value="0" id="blue" />
+        </div>
+        <button id="rgb-btn">Create RGB Color</button>
+        <button class="rgb-copy">Copy RGB Color</button>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
