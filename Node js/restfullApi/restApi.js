@@ -97,7 +97,7 @@ app.post("/api/users", (req, res) => {
     if (err) {
       return res.status(500).json({ status: "error", error: err });
     }
-    return res.json(newUser); // Respond with the new user
+    return res.status(201).json(newUser); // Respond with the new user
   });
 });
 
