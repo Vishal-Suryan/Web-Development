@@ -1,0 +1,39 @@
+Package Version Notes
+
+Current package & version:
+express = ^5.1.0
+
+Semantic Versioning Format: MAJOR.MINOR.PATCH
+Example:   5    .    1    .    0
+           ─┬─     ─┬─     ─┬─
+    (1) MAJOR   (2) MINOR  (3) PATCH
+
+1) MAJOR version (5):
+   - Big updates with breaking changes
+   - May require code modifications when upgrading
+
+2) MINOR version (1):
+   - Backward-compatible new features
+   - Recommended to keep up-to-date for improvements
+
+3) PATCH version (0):
+   - Backward-compatible bug fixes or small changes
+   - Optional, but often includes stability improvements
+
+Version Symbols in package.json:
+
+^ (caret) → Example: ^5.1.0
+   - Allows automatic updates for MINOR and PATCH versions
+   - Installs versions >= 5.1.0 and < 6.0.0
+   - Example updates allowed: 5.1.1 → 5.2.0 → 5.9.3
+   - Best for staying updated without jumping to a new major version
+
+~ (tilde) → Example: ~5.1.0
+   - Allows automatic updates for PATCH versions only
+   - Installs versions >= 5.1.0 and < 5.2.0
+   - Example updates allowed: 5.1.1 → 5.1.5
+   - Good when you want stability and avoid new features
+
+Tip:
+Use ^ for active development to get improvements & bug fixes.
+Use ~ for production-critical environments to avoid surprise changes.
