@@ -33,7 +33,88 @@ const app = express();
 const fs = require("fs");
 // Define the port number for the server
 const PORT = 8000;
+app.use(express.urlencoded({ extended: false }));
+const mongoose = require("mongoose");
+mongoose
+  .connect("mongodb://127.0.0.1:27017/practice")
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.log(err));
+const userSchema = new mongoose.Schema(
+  {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: false,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    jobTitle: {
+      type: String,
+    },
+    gender: {
+      type: String,
+    },
+  },
+  { timestamps: true }
+);
 
+const User = mongoose.model("user", userSchema);
+app.post("/api/users", async (req, res) => {
+  const body = req.body;
+  if (
+    !body ||
+    !body.first_name ||
+    !body.last_name ||
+    !body.email ||
+    !body.gender ||
+    !body.job_title
+  ) {
+    console.log(body);
+    return res
+      .status(400)
+      .json({ msg: "All Required fields are required...." });
+  }
+  const result = await User.create({
+    firstName: body.first_name,
+    lastName: body.last_name,
+    email: body.email,
+    jobTitle: body.job_title,
+    gender: body.gender,
+  });
+  console.log(result);
+  return res.status(201).json({ msg: "success" });
+});
+app.get("/users", async (req, res) => {
+  const allDbUsers = await User.find({});
+  const html = `
+    <ul>
+        ${allDbUsers.map((user) => `<li>${user.firstName}</li>`).join("")}
+    </ul>
+    `;
+  res.send(html); // Send HTML string as response
+});
+app
+  .route("/api/users/:id")
+  .get(async (req, res) => {
+    // GET specific user by ID
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ error: "user not found" });
+    return res.json(user);
+  })
+  .patch(async (req, res) => {
+    await User.findByIdAndUpdate(req.params.id, { lastName: "Changed" });
+    return res.json({ status: "success" });
+  })
+  .delete(async (req, res) => {
+    await User.findByIdAndUpdate(req.params.id);
+    return res.json({ status: "success" });
+  });
 // ==============================
 // Routes Overview (REST API - JSON)
 // ==============================
@@ -86,7 +167,6 @@ app.listen(PORT, () => console.log("Server Started"));
 // });
 
 // ==================================
-app.use(express.urlencoded({ extended: false }));
 // 3) POST - Create a new user
 // ==================================
 app.post("/api/users", (req, res) => {
