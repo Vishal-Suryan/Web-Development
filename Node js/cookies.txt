@@ -1,0 +1,182 @@
+﻿1. Authentication Models
+   a) Stateless Authentication
+      * No session data stored on the server.
+
+      * JWT (JSON Web Token) commonly used.
+
+      * Token itself carries user identity + claims.
+
+      * Server only verifies the token signature, doesn’t query DB every time.
+
+   b) Stateful Authentication
+      * Server stores session information (session ID + user details).
+
+      * Session ID sent to client; stored in cookies.
+
+      * Server checks session on each request.
+
+Problem with in-memory sessions:
+      * If server restarts, all sessions are lost.
+
+      * Memory consumption increases.
+
+Improvement (suggested by Shubham):
+      * Store sessions in a database instead of memory.
+
+Issues with DB-stored sessions:
+   1. Latency: Each request → DB query → extra 200–300ms delay depending on DB location.
+
+   2. Cost: Real-world DB services (like AWS RDS) charge per read/write.
+
+      * Refreshing a page 10 times = 10 DB reads just for authentication.
+
+      * Bills can rise quickly.
+→ Therefore, querying DB for every request just for auth is inefficient.
+
+________________
+
+
+2. JWT-based Authentication (Recommended)
+Flow:
+   1. User logs in with username + password.
+
+   2. Server checks credentials against DB (MongoDB in this case).
+
+   3. If valid → Server generates a JWT token.
+
+      * Payload contains: user ID, username, email, etc.
+
+      * Token is signed, so client cannot tamper with it.
+
+   4. Server sends token to client.
+
+________________
+
+
+3. Ways to Send JWT Token to Client
+Method 1: Using Cookies
+   * Server sets a cookie: res.cookie("uid", token)
+
+   * Browser automatically stores cookies.
+
+   * On every request, browser attaches cookies automatically.
+
+   * Workflow:
+
+      * Server checks if cookie (say uid) exists.
+
+      * Extract token → verify signature → extract user info.
+
+Advantages:
+   * Automatic handling by browser.
+
+   * Simplifies session continuity.
+
+Properties of Cookies:
+   1. Domain-specific:
+
+      * A cookie set by facebook.com is not sent to piyushgarg.dev.
+
+      * Prevents cross-domain data leaks.
+
+      * Example: logging into Gmail also logs into YouTube (because both are under *.google.com).
+
+   2. Options with Cookies:
+
+      * expires: auto-delete after specific time (e.g., 1 day).
+
+      * domain: define which domain/subdomain can access it.
+
+      * httpOnly: prevents JavaScript from accessing cookie (security).
+
+      * secure: cookie sent only over HTTPS.
+
+   3. Problem:
+
+      * Cookies are browser-only.
+
+      * Not suitable for mobile apps or non-browser clients.
+
+________________
+
+
+Method 2: Using JSON Response (Token in Response Body)
+   Server returns token in JSON:
+      { "token": "xyz123..." }
+   * Client must store token manually (localStorage, AsyncStorage, file, etc.).
+
+   * On every request, client must send token explicitly via headers.
+
+Standard practice:
+   Use Authorization header with Bearer scheme.
+
+   Authorization: Bearer <token>
+      * Server extracts token from header → verifies it.
+
+Why better for mobile apps / APIs?
+   * Works across platforms (browser + mobile + desktop apps).
+
+   * Client decides how to store token.
+
+________________
+
+
+4. Cookie vs Token in Header
+   Aspect                     Cookie                     Authorization Header (Bearer Token)
+
+	Storage                  Browser-managed              Client-managed (localStorage, file, etc.)
+	Request Sending      Automatic with every request     Must be manually added to headers
+	Platform                  Only browsers               Works with browser, mobile, APIs
+	Security             Can be httpOnly, secure          Must ensure safe storage manually
+	Use-case               Traditional web apps           APIs, mobile apps, microservices
+	________________
+
+
+5. Important Implementation Notes
+   * JWT verification ensures authenticity. Even if token payload is modified, signature check fails.
+
+   * Cookie flow:
+
+      * Login → Server sets cookie.
+
+      * Browser auto-sends cookie on subsequent requests.
+
+      * Server validates token inside cookie.
+
+   * Header flow:
+
+      * Login → Server responds with token.
+
+      * Client stores token.
+
+      * On each request → attach in Authorization: Bearer <token> header.
+
+________________
+
+
+6. Key Takeaways
+   1. Don’t use DB for validating every request – costly & slow.
+
+   2. JWT solves this by being self-contained (includes user info inside).
+
+   3. Two main delivery strategies:
+
+      * Cookies (browser use) → automatic, but domain-locked.
+
+      * Authorization headers (Bearer tokens) → universal, works for APIs & apps.
+
+   4. Cookies support expiry, domain restrictions, secure/httpOnly flags.
+
+   5. Tokens must always be verified on server before trusting.
+
+________________
+
+
+⚡ Quick Memory Hook:
+   * Stateful = sessions in DB/Memory → costly, slow.
+
+   * Stateless = JWT → scalable, efficient.
+
+   * Browser app? → Use Cookies.
+
+   * API / Mobile app? → Use Authorization: Bearer <token>.
