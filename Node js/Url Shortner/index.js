@@ -1,7 +1,8 @@
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
-const { restrictToLoggedInUserOnly, checkAuth } = require("./middlewares/auth");
+//const { restrictToLoggedInUserOnly, checkAuth } = require("./middlewares/auth");
+const { checkForAuthentication, restrictTo } = require("./middlewares/auth");
 const connectToMongoDB = require("./connect");
 const URL = require("./models/url");
 const app = express();
@@ -19,15 +20,18 @@ app.set("views", path.resolve(__dirname, "views"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(checkForAuthentication);
 // app.get("/test", async (req, res) => {
 //   const allUrls = await URL.find({});
 //   return res.render("home", {
 //     urls: allUrls,
 //   });
 // });
-app.use("/url", restrictToLoggedInUserOnly, urlRoute);
-app.use("/", checkAuth, staticRoute);
+//app.use("/url", restrictToLoggedInUserOnly, urlRoute);
+//app.use("/", checkAuth, staticRoute);
+app.use("/url", restrictTo(["NORMAL", "ADMIN"]), urlRoute);
 app.use("/user", userRoute);
+app.use("/", staticRoute);
 app.get("/:shortId", async (req, res) => {
   const shortId = req.params.shortId;
   const entry = await URL.findOneAndUpdate(
