@@ -1,0 +1,16 @@
+{
+  "name": "nodejs-1",
+  "version": "1.0.0",
+  "description": "node package manager",
+  "license": "ISC",
+  "author": "vishal",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "lodash": "^4.17.23"
+  }
+}
