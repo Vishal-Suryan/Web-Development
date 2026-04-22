@@ -5,16 +5,18 @@
   "license": "ISC",
   "author": "vishal",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "server.js",
+    "dev": "nodemon ./6.bookstore-api/server.js"
   },
   "dependencies": {
     "dotenv": "^17.4.2",
     "ejs": "^5.0.2",
     "express": "^5.2.1",
     "lodash": "^4.17.23",
-    "mongoose": "^9.5.0"
+    "mongoose": "^9.5.0",
+    "nodemon": "^3.1.14"
   }
 }
