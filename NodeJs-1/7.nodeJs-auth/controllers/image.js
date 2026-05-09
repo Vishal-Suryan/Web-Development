@@ -1,3 +1,4 @@
+const cloudinary = require("../config/cloudinary");
 const { uploadToCloudinary } = require("../helpers/cloudinaryHelper");
 const Image = require("../models/Image");
 const fs = require("fs");
@@ -57,4 +58,39 @@ const fetchImagesController = async (req, res) => {
   }
 };
 
-module.exports = { uploadImage, fetchImagesController };
+const deleteImageController = async (req, res) => {
+  try {
+    const getCurrentImageToBeDeleted = req.params.id;
+    const userId = req.userInfo.userId;
+    const image = await Image.findById(getCurrentImageToBeDeleted);
+    if (!image) {
+      return res.status(404).json({
+        success: false,
+        message: "Image not found",
+      });
+    }
+    //check if image is uploaded by the same user who is trying to delete it
+    if (image.uploadedBy.toString() !== userId) {
+      return res.status(404).json({
+        success: false,
+        message: "You are not authorised to delete the image",
+      });
+    }
+    //delete the image from cloudinary storage
+    await cloudinary.uploader.destroy(image.publicId);
+    // delete this image from mongoDb
+    await Image.findByIdAndDelete(getCurrentImageToBeDeleted);
+    res.status(200).json({
+      success: true,
+      message: "Image deleted successfully",
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong, please try again",
+    });
+  }
+};
+
+module.exports = { uploadImage, fetchImagesController, deleteImageController };
